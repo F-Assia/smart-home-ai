@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Home Dashboard</title>
+</head>
+<body>
+
+<h1>Smart Home Dashboard</h1>
+
+<p>Temperature: <span id="temp">0</span> °C</p>
+<p>Light: <span id="light">OFF</span></p>
+<p>Fan: <span id="fan">0</span>%</p>
+
+<script>
+async function loadData() {
+    const response = await fetch('/api/state');
+    const data = await response.json();
+
+    document.getElementById('temp').innerText = data.temperature;
+    document.getElementById('light').innerText =
+        data.light ? 'ON' : 'OFF';
+    document.getElementById('fan').innerText =
+        data.fan;
+}
+
+setInterval(loadData, 1000);
+loadData();
+</script>
+
+</body>
+</html>
