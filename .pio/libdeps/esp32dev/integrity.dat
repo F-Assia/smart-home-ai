@@ -1,0 +1,4 @@
+adafruit/DHT sensor library @ ^1.4.6
+bblanchon/ArduinoJson @ ^6.21.3
+adafruit/Adafruit Unified Sensor @ ^1.1.14
+madhephaestus/ESP32Servo @ ^1.1.1

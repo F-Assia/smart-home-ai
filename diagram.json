@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "author": "Smart Home Assistant with AI and IoT",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -105.3, "left": -139.8, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -89.2, "left": 177.6, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": -36.35, "left": 169.55, "attrs": { "value": "220" } },
+    { "type": "wokwi-servo", "id": "servo1", "top": 116.2, "left": 162.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:3V3", "dht1:VCC", "red", [ "h-38.4", "v-96" ] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "h-57.6", "v-38.4" ] ],
+    [ "esp:4", "dht1:SDA", "green", [ "h-28.8", "v-76.8" ] ],
+    [ "esp:13", "r1:1", "green", [ "h96", "v-57.6" ] ],
+    [ "r1:2", "led1:A", "green", [ "v-19.2" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v48", "h-105.6" ] ],
+    [ "esp:18", "servo1:PWM", "orange", [ "h105.6", "v76.8" ] ],
+    [ "esp:5V", "servo1:V+", "red", [ "h76.8", "v124.8" ] ],
+    [ "esp:GND.2", "servo1:GND", "black", [ "h86.4", "v96" ] ]
+  ],
+  "dependencies": {}
+}

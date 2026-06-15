@@ -1,31 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Smart Home Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Assistant with AI and IoT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <main class="dashboard">
+        <section class="topbar">
+            <div>
+                <p class="eyebrow">AI + IoT Dashboard</p>
+                <h1>Smart Home Assistant</h1>
+            </div>
+            <div class="status-pill">
+                <span class="pulse"></span>
+                Live simulation
+            </div>
+        </section>
 
-<h1>Smart Home Dashboard</h1>
+        <section class="metrics-grid" aria-label="Smart home metrics">
+            <article class="metric-card temperature-card">
+                <div class="metric-icon">&deg;C</div>
+                <p>Current temperature</p>
+                <h2><span id="temperature">0.0</span><small> &deg;C</small></h2>
+            </article>
 
-<p>Temperature: <span id="temp">0</span> °C</p>
-<p>Light: <span id="light">OFF</span></p>
-<p>Fan: <span id="fan">0</span>%</p>
+            <article class="metric-card">
+                <div class="metric-icon light-icon"></div>
+                <p>Light status</p>
+                <h2 id="lightStatus">OFF</h2>
+                <button id="lightToggle" class="action-button" type="button">Toggle light</button>
+            </article>
 
-<script>
-async function loadData() {
-    const response = await fetch('/api/state');
-    const data = await response.json();
+            <article class="metric-card">
+                <div class="metric-icon fan-icon"></div>
+                <p>Fan speed</p>
+                <h2><span id="fanSpeed">0</span><small>%</small></h2>
+                <input id="fanSlider" type="range" min="0" max="100" value="0" aria-label="Fan speed">
+            </article>
 
-    document.getElementById('temp').innerText = data.temperature;
-    document.getElementById('light').innerText =
-        data.light ? 'ON' : 'OFF';
-    document.getElementById('fan').innerText =
-        data.fan;
-}
+            <article class="metric-card prediction-card">
+                <div class="metric-icon">AI</div>
+                <p>Predicted next temperature</p>
+                <h2><span id="prediction">0.0</span><small> &deg;C</small></h2>
+            </article>
+        </section>
 
-setInterval(loadData, 1000);
-loadData();
-</script>
+        <section class="workspace">
+            <div class="chart-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">Sensor history</p>
+                        <h2>Temperature trend</h2>
+                    </div>
+                </div>
+                <canvas id="temperatureChart"></canvas>
+            </div>
 
+            <aside class="chat-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">Gemini assistant</p>
+                        <h2>Command by text</h2>
+                    </div>
+                </div>
+                <div id="chatLog" class="chat-log" aria-live="polite"></div>
+                <form id="chatForm" class="chat-form">
+                    <input id="chatInput" type="text" placeholder="Turn on the light" autocomplete="off">
+                    <button type="submit">Send</button>
+                </form>
+            </aside>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
