@@ -1,6 +1,10 @@
 # Smart Home Assistant with AI and IoT
 
-Academic project using Python 3.13, Flask, Gemini API, ESP32 on Wokwi, DHT22, LED, SG90 servo, scikit-learn, and Chart.js.
+Academic project using Python 3.12, Flask, Gemini API, ESP32 on Wokwi, DHT22, LED, SG90 servo, scikit-learn, and Chart.js.
+
+Réalisé par :
+- Assia Fasih
+- Fatima Zahra el bouatmani
 
 ## Features
 
@@ -121,19 +125,24 @@ with your public tunnel URL.
 
 ## Project Structure
 
-```text
-smart-home-ai/
-+-- app.py
-+-- predictor.py
-+-- requirements.txt
-+-- README.md
-+-- data/
-+-- templates/
-|   +-- dashboard.html
-+-- static/
-|   +-- style.css
-|   +-- script.js
-+-- wokwi/
-    +-- sketch.ino
-    +-- diagram.json
+```
+smart-home-ai
+├─ .pio
+├─ app.py
+├─ data
+├─ diagram.json
+├─ platformio.ini
+├─ predictor.py
+├─ README.md
+├─ requirements.txt
+├─ src
+│  └─ sketch.cpp
+├─ static
+│  ├─ script.js
+│  └─ style.css
+├─ templates
+│  └─ dashboard.html
+├─ test_gemini.py
+└─ wokwi.toml
+
 ```
